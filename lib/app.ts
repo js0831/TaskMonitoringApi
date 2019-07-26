@@ -32,6 +32,9 @@ class App {
 
     private mongoSetup(): void{
         mongoose.Promise = global.Promise;
+        mongoose.set('useNewUrlParser', true);
+        mongoose.set('useFindAndModify', false);
+        mongoose.set('useCreateIndex', true);
         mongoose.connect(this.mongoUrl, { useNewUrlParser: true });    
     }
 }

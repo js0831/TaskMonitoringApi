@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from '../models/User'; 
+import { User } from '../models/userModel'; 
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt'; 
  
@@ -20,7 +20,7 @@ export class UserController {
             const newUser = new User({
                 firstname: param.firstname,
                 lastname: param.lastname,
-                email: param.email,
+                username: param.username,
                 password: hash
             });
         
@@ -118,7 +118,7 @@ export class UserController {
   
   public login(req: Request, res: Response) {
       const param = req.body;
-      User.find({email:param.email}).exec().then( (result) => { 
+      User.find({username:param.username}).exec().then( (result) => { 
         if( result.length  < 1 ){
             return res.status(200).json({
                 status:'failed',
@@ -134,7 +134,7 @@ export class UserController {
                     } else {  
                             const token = jwt.sign(
                                 {
-                                    email: param.email,
+                                    username: param.username,
                                     userId: result[0]._id,
                                 },
                                 'process.env.JWT_KEY',
