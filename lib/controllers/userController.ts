@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { User } from '../models/userModel'; 
+import { Task } from "../models/taskModel";
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt'; 
- 
+
 
 
 export class UserController { 
@@ -10,6 +11,25 @@ export class UserController {
   public root(req: Request, res: Response) {
     res.status(200).send({
       message: "USER GET request successful"
+    });
+  }
+
+  public getUserTask(req: Request, res: Response){
+    const userId = req.params.id;
+    Task.find({
+        user: userId
+    }).exec().then( docs => {
+        res.status(200).json({
+            status:'ok',
+            data:docs,
+            message:'success'
+        })
+    }).catch(err => {
+        res.status(500).json({
+            status:'failed',
+            error:err,
+            message:'Task not found'
+        });
     });
   }
 

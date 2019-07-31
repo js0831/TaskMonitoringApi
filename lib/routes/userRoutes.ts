@@ -1,5 +1,6 @@
 import * as express from "express";
 import { userController } from "../controllers/UserController";
+import { TokenRouteGuard } from "../middlewares/TokenRouteGuard";
 
 class UserRoutes {
   public router: express.Router = express.Router();
@@ -9,9 +10,9 @@ class UserRoutes {
   }
 
   private config(): void {
-    this.router.get("/", userController.root);
-    this.router.post("/", userController.register);
+    this.router.post("/", userController.register); 
     this.router.post("/login", userController.login);
+    this.router.get("/tasks/:id", TokenRouteGuard ,userController.getUserTask);
   }
 }
 
