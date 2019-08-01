@@ -11,6 +11,7 @@ class TaskRoutes {
 
   private config(): void { 
     this.router.post("/",TokenRouteGuard ,taskController.add);
+    this.router.delete("/:id",TokenRouteGuard ,taskController.delete);    
   }
 }
 
