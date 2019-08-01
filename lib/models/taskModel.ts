@@ -20,6 +20,9 @@ const TaskSchema = new Schema({
     required: true
   },
   date: {
+    type: Date
+  },
+  dateCreated: {
     type: Date,
     default: Date.now
   }

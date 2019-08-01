@@ -12,7 +12,7 @@ class UserRoutes {
   private config(): void {
     this.router.post("/", userController.register); 
     this.router.post("/login", userController.login);
-    this.router.get("/tasks/:id", TokenRouteGuard ,userController.getUserTask);
+    this.router.get("/tasks/:userid/date/:date", TokenRouteGuard ,userController.getUserTask);
   }
 }
 

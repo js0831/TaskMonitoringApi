@@ -15,9 +15,18 @@ export class UserController {
   }
 
   public getUserTask(req: Request, res: Response){
-    const userId = req.params.id;
+    const params = req.params;
+    const dateString = new Date(params.date).toDateString();
+    const targetDate = new Date(dateString);
+    const endOfday = new Date(dateString);
+    endOfday.setDate(endOfday.getDate() + 1);
+
     Task.find({
-        user: userId
+        user: params.userid,
+        date: {
+            $gte: targetDate,
+            $lt: endOfday
+        }
     }).exec().then( docs => {
         res.status(200).json({
             status:'ok',

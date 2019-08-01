@@ -17,7 +17,8 @@ export class TaskController {
         user: param.user,
         title: param.title,
         description: param.description,
-        status: param.status
+        status: param.status,
+        date: param.date
     });
 
     newTask.save()
