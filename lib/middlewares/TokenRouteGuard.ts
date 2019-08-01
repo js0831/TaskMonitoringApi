@@ -7,8 +7,9 @@ export const TokenRouteGuard = (req,res,next) => {
         req.userData = decoded;
         next();
     } catch (error) {
+        const msg = req.headers.authorization ? 'Session Expired' : 'Authorization failed';
         return res.status(401).json({
-            message:'authorization failed'
+            message:msg
         });
     }
 };
