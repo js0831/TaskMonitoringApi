@@ -34,13 +34,30 @@ export class TaskController {
     );
   } // END : add
 
+  public update(req: Request, res: Response){
+      console.log(req.params.id);
+      Task.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, (err, task) => {
+      if(err){
+          res.status(200).json({ 
+            status:'failed',
+            error:err,
+            message:'failed'
+          })
+      }
+      res.status(200).json({
+          status:'ok',
+          message:'success',
+          data:task
+      })
+    }); 
+  } // END : update
 
-  public delete(req: Request, res: Response){
-	  console.log(req.params.id);
+
+  public delete(req: Request, res: Response){ 
     Task.deleteOne({_id: req.params.id})
     .then( () => res.status(200).json({
-		status:'ok',
-		message:'success'
+      status:'ok',
+      message:'success'
     }))
     .catch( 
       err => res.status(200).json({ 
@@ -48,8 +65,8 @@ export class TaskController {
           error:err,
           message:'failed'
       })
-	);
-  }
+	  );
+  }// END : delete
 
 }
 
