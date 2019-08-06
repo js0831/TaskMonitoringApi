@@ -1,14 +1,15 @@
 import * as express from "express";
-import { userController } from "../../src/controllers/UserController";
-import { TokenRouteGuard } from "../../src/middlewares/TokenRouteGuard";
+
+import { TokenRouteGuard } from "middlewares/TokenRouteGuard";
+import { userController } from "controllers/UserController";
 
 class UserRoutes {
   public router: express.Router = express.Router();
-
   constructor() {
     this.config();
   }
 
+  userControllera
   private config(): void {
     this.router.post("/", userController.register); 
     this.router.post("/login", userController.login);
