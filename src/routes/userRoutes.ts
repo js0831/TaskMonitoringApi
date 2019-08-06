@@ -1,18 +1,18 @@
 import * as express from "express";
 import { TokenRouteGuard } from "../middlewares/TokenRouteGuard";
-import { userController } from "../controllers/UserController";
+import { UserController } from "../controllers/UserController";
 
 class UserRoutes {
   public router: express.Router = express.Router();
+  public userController = new UserController();
   constructor() {
     this.config();
   }
 
-  userControllera
   private config(): void {
-    this.router.post("/", userController.register); 
-    this.router.post("/login", userController.login);
-    this.router.get("/tasks/:userid/date/:date", TokenRouteGuard ,userController.getUserTask);
+    this.router.post("/", this.userController.register); 
+    this.router.post("/login", this.userController.login);
+    this.router.get("/tasks/:userid/date/:date", TokenRouteGuard , this.userController.getUserTask);
   }
 }
 

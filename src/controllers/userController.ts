@@ -186,4 +186,4 @@ export class UserController {
 
 }
 
-export const userController = new UserController();
+// export const userController = new UserController();
