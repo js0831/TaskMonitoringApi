@@ -1,6 +1,6 @@
 import * as express from "express";
-import { userController } from "../controllers/UserController";
-import { TokenRouteGuard } from "../middlewares/TokenRouteGuard";
+import { userController } from "../../src/controllers/UserController";
+import { TokenRouteGuard } from "../../src/middlewares/TokenRouteGuard";
 
 class UserRoutes {
   public router: express.Router = express.Router();
