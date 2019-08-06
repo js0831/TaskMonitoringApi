@@ -2,7 +2,7 @@ import * as express from "express";
 import { TaskController } from "../controllers/TaskController";
 import { TokenRouteGuard } from "../middlewares/TokenRouteGuard";
 
-class TaskRoutes {
+export class TaskRoutes {
   public router: express.Router = express.Router();
   public taskController = new TaskController();
   constructor() {
@@ -17,4 +17,4 @@ class TaskRoutes {
   }
 }
 
-export const taskRoutes = new TaskRoutes().router;
+// export const taskRoutes = new TaskRoutes().router;

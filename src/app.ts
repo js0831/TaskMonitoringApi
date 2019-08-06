@@ -1,8 +1,8 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
-import { userRoutes } from "./routes/userRoutes";
-import { taskRoutes } from "./routes/taskRoutes";
+import { UserRoutes } from "./routes/UserRoutes";
+import { TaskRoutes } from "./routes/TaskRoutes";
 import { corsSetup } from "./middlewares/CorsSetup";
 import * as RouteErrorHandling from "./middlewares/RouteErrorHandling";
 // import { crmRoutes } from "./routes/crmRoutes";
@@ -22,8 +22,8 @@ class App {
     private config(): void{
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
-        this.app.use('/user', userRoutes);
-        this.app.use('/task', taskRoutes);
+        this.app.use('/user', new UserRoutes().router);
+        this.app.use('/task', new TaskRoutes().router);
         // this.app.use('/test', crmRoutes);
         
 
