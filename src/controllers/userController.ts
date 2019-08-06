@@ -185,5 +185,4 @@ export class UserController {
   }// LOGIN
 
 }
-
-// export const userController = new UserController();
+ 

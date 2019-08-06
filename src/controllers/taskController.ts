@@ -69,5 +69,3 @@ export class TaskController {
   }// END : delete
 
 }
-
-// export const taskController = new TaskController();
